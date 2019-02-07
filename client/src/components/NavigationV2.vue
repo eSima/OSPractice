@@ -1,31 +1,8 @@
 <template>
    <v-container>
         <v-layout wrap class="nav" >
-            <v-navigation-drawer floating stateless value="true">
-                <v-list subheader dense >  
-                    <v-list-group lazy="true" value="true">
-                        <v-list-tile slot="activator">
-                            <v-list-tile-title>Test1</v-list-tile-title>
-                        </v-list-tile>
-                        <v-list-group no-action sub-group value="true">
-                            <v-list-tile slot="activator">
-                                <v-list-tile-title>Class1</v-list-tile-title>
-                            </v-list-tile> 
-                            <v-list-tile v-for="(el, i) in class1" :key="i" @click="">
-                                <v-list-tile-title v-text="el"></v-list-tile-title>
-                            </v-list-tile>
-                        </v-list-group>
-                        <v-list-group sub-group no-action >
-                            <v-list-tile slot="activator">
-                                <v-list-tile-title>Class2</v-list-tile-title>
-                            </v-list-tile>
-                            <v-list-tile v-for="(el, i) in class2" :key="i" @click="">
-                                <v-list-tile-title v-text="el"></v-list-tile-title>
-                            </v-list-tile>
-                        </v-list-group>
-                    </v-list-group>
-                </v-list>
-            </v-navigation-drawer>
+           <v-treeview v-model="tree"  :items="items" item-key="name" open-on-click>
+            </v-treeview>
         </v-layout>
     </v-container> 
 </template>
@@ -33,16 +10,41 @@
 <script >
   export default{
         data: () => ({
-    class1: [
-      'object1',
-      'object2'
-      
-    ],
-    class2: [
-      'object1',
-      'object2',
-      'object3',
-      'object4'
+    items: [
+      {
+        name: 'group1',
+        children:[{
+            name:'object11'
+        }]
+      },
+      {
+        name: 'group2',
+        children: [
+          {
+            name: 'group21',
+            children: [{
+              name: 'object211',
+              
+            }]
+          },
+          {
+            name: 'object22',
+           
+          },
+          {
+            name: 'object23',
+            
+          }
+        ]
+      },
+      {
+        name: 'object01',
+        
+      },
+      {
+        name: 'object02',
+        
+      }
     ]
   }),
         computed:{

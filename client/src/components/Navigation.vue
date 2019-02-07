@@ -1,28 +1,52 @@
 <template>
    <v-container>
-        <v-layout column wrap class="nav">
-            <ul>                     
-               <v-flex v-for="group in groups" :key="group.id">
-                    <li>
-                        <v-card flat   class="gray--text">
-                            {{group.name}}
-                            <ul v-if="true">
-                                <v-card flat v-for="element in group.elements" :key="element.id">
-                                    <li>{{element.name}}</li>
-<!--                                    <li>{{isShow(group)}}</li>-->
-                                </v-card>
-                            </ul>
-                        </v-card> 
-                    </li>
-                </v-flex> 
-                
-            </ul>
+        <v-layout wrap class="nav" >
+           <v-treeview v-model="tree"  :items="items" item-key="name" open-on-click>
+            </v-treeview>
         </v-layout>
     </v-container> 
 </template>
 
 <script >
   export default{
+        data: () => ({
+    items: [
+      {
+        name: 'group1',
+        children:[{
+            name:'object11'
+        }]
+      },
+      {
+        name: 'group2',
+        children: [
+          {
+            name: 'group21',
+            children: [{
+              name: 'object211',
+              
+            }]
+          },
+          {
+            name: 'object22',
+           
+          },
+          {
+            name: 'object23',
+            
+          }
+        ]
+      },
+      {
+        name: 'object01',
+        
+      },
+      {
+        name: 'object02',
+        
+      }
+    ]
+  }),
         computed:{
             groups(){
                 return this.$store.getters.getGroups
@@ -32,15 +56,9 @@
             }
            
             
-        },
-        compmnent:{
-            
-        },
-        methods:{
-            show:function(group){
-            group.$store.commit('change_show')
-            }
         }
+       
+       
   }
 </script>
 
@@ -48,3 +66,5 @@
 
 
 </style>
+
+        

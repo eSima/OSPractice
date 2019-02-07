@@ -25,7 +25,7 @@
                     
                      <v-overflow-btn dense right :items="root_group" label="test1" item-value="text" ></v-overflow-btn>
                   
-                    <Navigationv ></Navigationv>
+                    <Navigation ></Navigation>
                      
                 </v-card>
 
@@ -54,7 +54,7 @@
 
 <script>
     import Navigation from '@/components/Navigation'
-    import Navigationv from '@/components/NavigationV2'
+    
     export default{
         data:()=> ({
              nav_view_mode: [
@@ -67,7 +67,7 @@
             ]
         }),
         components:{
-            Navigationv,
+            
             Navigation
         }
 
