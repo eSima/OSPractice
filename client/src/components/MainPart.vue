@@ -7,7 +7,7 @@
       <v-layout align-space-between justify-center column fill-height>
         <v-layout>
             <v-flex d-flex sm3 md3 class="form-top">
-                <v-card light>
+                <v-card color="grey lighten-4" light>
                     <v-card-title color="blue-grey darken-1" primary class="title">Навигация
                         <v-spacer></v-spacer> 
                             <v-menu bottom left>
@@ -31,7 +31,7 @@
 
             </v-flex>
             <v-flex d-flex grid class="form-top">
-                <v-card  >
+                <v-card color="grey lighten-4" >
                     <v-card-title primary class="title">Контент</v-card-title>
                     <v-card-text> 2 </v-card-text>
                 </v-card> 
@@ -39,7 +39,7 @@
         </v-layout>
         <v-layout>
             <v-flex d-flex grid class="form-bottom">
-                <v-card >
+                <v-card color="grey lighten-4">
                     <v-cart-title primary class="title">События</v-cart-title>
                     <v-card-text> 3 </v-card-text>
                 </v-card>
