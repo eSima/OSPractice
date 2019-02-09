@@ -8,31 +8,30 @@
         <v-layout>
             <v-flex d-flex sm3 md3 class="form-top">
                 <v-card color="grey lighten-4" light>
-                    <v-card-title color="blue-grey darken-1" primary class="title">Навигация
+                    <v-card-title color="blue-grey darken-1" primary-class="title">Навигация  
                         <v-spacer></v-spacer> 
                             <v-menu bottom left>
                                 <v-btn slot="activator" icon>
                                     <v-icon right>fas fa-list</v-icon>
                                 </v-btn>
                                 <v-list>
-                                    <v-list-tile v-for="(item, i) in nav_view_mode" :key="i" @click="" >
+                                    <v-list-tile v-for="(item, i) in nav_view_mode" :key="i" >
                                         <v-list-tile-title>{{ item.title }}</v-list-tile-title>
                                     </v-list-tile>
                                 </v-list>
                             </v-menu>
+                    </v-card-title> 
                     
-                    </v-card-title>   
-                    
-                     <v-overflow-btn dense right :items="root_group" label="test1" item-value="text" ></v-overflow-btn>
-                  
-                    <Navigation ></Navigation>
-                     
+                        <v-overflow-btn dense menu-props="right" :items="root_group" label="test1" item-value="text" ></v-overflow-btn>
+                    <v-card-text>
+                        <Navigation ></Navigation>
+                     </v-card-text>
                 </v-card>
 
             </v-flex>
             <v-flex d-flex grid class="form-top">
                 <v-card color="grey lighten-4" >
-                    <v-card-title primary class="title">Контент</v-card-title>
+                    <v-card-title class="title">Контент</v-card-title>
                     <v-card-text> 2 </v-card-text>
                 </v-card> 
             </v-flex>
@@ -40,7 +39,7 @@
         <v-layout>
             <v-flex d-flex grid class="form-bottom">
                 <v-card color="grey lighten-4">
-                    <v-cart-title primary class="title">События</v-cart-title>
+                    <v-card-title class="title">События</v-card-title>
                     <v-card-text> 3 </v-card-text>
                 </v-card>
             </v-flex>
