@@ -7,31 +7,40 @@
       <v-layout align-space-between justify-center column fill-height>
         <v-layout>
             <v-flex d-flex sm3 md3 class="form-top">
-                <v-card color="grey lighten-4" light>
-                    <v-card-title color="blue-grey darken-1" primary-class="title">Навигация  
+                <v-card color="grey lighten-4" light class="CardTextPadding">
+                    <v-card-title color="blue-grey darken-1" class="title px-1 pb-2 pt-0">Навигация  
                         <v-spacer></v-spacer> 
                             <v-menu bottom left>
                                 <v-btn slot="activator" icon>
                                     <v-icon right>fas fa-list</v-icon>
                                 </v-btn>
                                 <v-list>
-                                    <v-list-tile v-for="(item, i) in nav_view_mode" :key="i" >
+                                    <v-list-tile  v-for="(item, i) in nav_view_mode" :key="i" @click="ViewModeSwitch(item)" >
                                         <v-list-tile-title>{{ item.title }}</v-list-tile-title>
                                     </v-list-tile>
                                 </v-list>
                             </v-menu>
                     </v-card-title> 
                     
-                        <v-overflow-btn dense menu-props="right" :items="root_group" label="test1" item-value="text" ></v-overflow-btn>
-                    <v-card-text>
-                        <Navigation ></Navigation>
+                        <v-select class="pa-0 ma-0" v-model="selectedRootGroup" menu-props="right" :items="root_group" label="test1" solo @change="RootGroupSelector()"></v-select>
+                    
+                    <v-card-text class="CardTextPadding pa-0 ma-0" >
+                        <Navigation class="pl-0 pt-0 " ></Navigation>
                      </v-card-text>
                 </v-card>
 
             </v-flex>
-            <v-flex d-flex grid class="form-top">
+            <v-flex d-flex sm12 md12 grid class="form-top">
                 <v-card color="grey lighten-4" >
-                    <v-card-title class="title">Контент</v-card-title>
+                    <v-card-title primary class="title px-3 pb-2 pt-0  ">Контент
+                        <v-spacer></v-spacer>
+                        
+                             <v-radio-group  v-model="selectedViewContent" row >
+                                <v-radio label="Список" value="list" color="black" ></v-radio>
+                                <v-radio label="Карта" value="map" color="black"></v-radio>
+                            </v-radio-group>
+                        
+                    </v-card-title>
                     <v-card-text> 2 </v-card-text>
                 </v-card> 
             </v-flex>
@@ -39,7 +48,7 @@
         <v-layout>
             <v-flex d-flex grid class="form-bottom">
                 <v-card color="grey lighten-4">
-                    <v-card-title class="title">События</v-card-title>
+                    <v-card-title class="title px-3 pb-2 pt-3">События</v-card-title>
                     <v-card-text> 3 </v-card-text>
                 </v-card>
             </v-flex>
@@ -57,18 +66,40 @@
     export default{
         data:()=> ({
              nav_view_mode: [
-                { title: 'Классы' },
-                { title: 'Типы объектов'}
+                { title: 'Классы' ,
+                    tab: 'class'},
+                { title: 'Группы',
+                    tab: 'group'}
                 ],
             root_group:[
-                { text: 'test1' },
-                { text: 'test2'}
-            ]
+                { text: 'test 1' ,
+                  value: 'test1'},
+                { text: 'test 2',
+                  value:'test2'}
+            ],
+            selectedRootGroup: 
+                    { text: 'test 1' ,
+                    value: 'test1'},
+            selectedViewContent:'list'
         }),
-        components:{
-            
+        components:{           
             Navigation
+        },
+        methods:{
+            ViewModeSwitch: function(item){
+                if(item.tab=='class'){
+                    this.$store.dispatch('isClass')
+                }else if(item.tab=='group'){
+                    this.$store.dispatch('isGroup')
+                }
+            },
+            RootGroupSelector: function(){
+                 setTimeout(() => {
+                    this.$store.dispatch('isRootGroup', this.selectedRootGroup)}, 1)
+                // Without setTimeout this.selectedRootGroup have a previous value
+            }
         }
+            
 
     }
 </script>
@@ -79,5 +110,8 @@
     }
     .form-bottom{
         min-height: 200px
+    }
+    .CardTextPadding{
+        padding: 10px   
     }
 </style>

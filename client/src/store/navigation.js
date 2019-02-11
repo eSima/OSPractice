@@ -1,6 +1,9 @@
 export default{
     state:{
-          items: [
+        loading:true,
+        errored:false,
+        root_group:'test1', 
+        items: [
             {
             name: 'group102',
             children:[{
@@ -35,18 +38,44 @@ export default{
             name: 'object02',
         
             }
-            ] 
+            ]
     },
-    mutation:{
-        
+    mutations:{
+        set_root_group(state,payload){
+            state.root_group=payload
+        }
         
     
     },
     actions:{
+//        isGroups(){
+//           axios
+//            .get('')
+//            .then(response =>{
+//                  this.items=respone.data
+//                  })
+//            .catch(error =>{
+//                  console.log(error);
+//                  this.errored =true;
+//                  })
+//            .finally(() => (this.loading = false));
+//        },
+        isClass(){
+            console.log("isClass action")
+        },
+        isGroup(){
+            console.log("isGroup action")
+        },
+        isRootGroup(context, payload){
+            context.commit('set_root_group', payload);
+            console.log("New root group: "+context.state.root_group)
+        }
+        
         
     },
     getters:{
         getItems: (state) => state.items,
+        
         
     }
 }
