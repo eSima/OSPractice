@@ -22,7 +22,7 @@
                             </v-menu>
                     </v-card-title> 
                     
-                        <v-select class="pa-0 ma-0" v-model="selectedRootGroup" menu-props="right" :items="root_group" label="test1" solo @change="RootGroupSelector()"></v-select>
+                        <v-select class="pa-0 ma-0" v-model="selectedRootGroup" menu-props="right" :items="root_group" label="test1" color="orange darken-3" solo @change="RootGroupSelector()"></v-select>
                     
                     <v-card-text class="CardTextPadding pa-0 ma-0" >
                         <Navigation class="pl-0 pt-0 " ></Navigation>
@@ -34,12 +34,13 @@
                 <v-card color="grey lighten-4" >
                     <v-card-title primary class="title px-3 pb-2 pt-0  ">Контент
                         <v-spacer></v-spacer>
-                        
+                        <div> 
+<!--                            div for correct alignment-->
                              <v-radio-group  v-model="selectedViewContent" row >
-                                <v-radio label="Список" value="list" color="black" ></v-radio>
-                                <v-radio label="Карта" value="map" color="black"></v-radio>
+                                <v-radio label="Список" value="list" color="orange darken-3" ></v-radio>
+                                <v-radio label="Карта" value="map" color="orange darken-3"></v-radio>
                             </v-radio-group>
-                        
+                        </div>
                     </v-card-title>
                     <v-card-text> 2 </v-card-text>
                 </v-card> 
