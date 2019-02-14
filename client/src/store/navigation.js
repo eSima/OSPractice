@@ -3,39 +3,91 @@ export default{
         loading:true,
         errored:false,
         root_group:'test1', 
+        map_coords:[59.94, 30.32],
         items: [
             {
+            id:'102',
             name: 'group102',
             children:[{
-                name:'object11'
+                id:'11',
+                name:'object11',
                 }]
             },
             {
+            id:'202',
             name: 'group202',
             children: [
                 {
+                id:'21',
                 name: 'group21',
                 children: [{
+                    id:'211',
                     name: 'object211',
-              
                     }]
                 },
                 {
+                id:'22',
                 name: 'object22',
-           
                 },
                 {
+                id:'23',
                 name: 'object23',
             
                 }
             ]
             },
             {
+            id:'01',
             name: 'object01',
         
             },
             {
+            id:'02',
             name: 'object02',
+        
+            }
+            ],
+        placemarks: [
+            {
+                id:'11',
+                type:'point',
+                coords: [59.94, 30.32],
+                balloonTemplate: 'object11'
+                
+            },
+            
+            {
+                id: '211',
+                type:'point',
+                coords: [59.92, 30.3557],
+                balloonTemplate: 'object211'
+            },
+            {
+                id: '22',
+                type:'point',
+                coords: [59.9423, 30.32112],
+                balloonTemplate: 'object22'
+           
+            },
+            {
+                id: '23',
+                type:'point',
+                coords: [59.942, 31.02113],
+                balloonTemplate: 'object23'
+            
+            },
+            {
+                id: '01',
+                type:'point',
+                coords: [59.9454, 30.33],
+                balloonTemplate: 'object01'
+        
+            },
+            {
+                id: '02',
+                type:'point',
+                coords: [59.88, 30.324],
+                balloonTemplate: 'object02'
         
             }
             ]
@@ -43,6 +95,9 @@ export default{
     mutations:{
         set_root_group(state,payload){
             state.root_group=payload
+        },
+        set_map_coords(state,payload){
+            state.map_coords=payload
         }
         
     
@@ -69,13 +124,21 @@ export default{
         isRootGroup(context, payload){
             context.commit('set_root_group', payload);
             console.log("New root group: "+context.state.root_group)
+        },
+        showOnMap(context, payload){
+            var placemark=this.getters.getPlacemarks.find((placemark)=> placemark.id==payload)
+            context.commit('set_map_coords',placemark.coords)
         }
+        
         
         
     },
     getters:{
         getItems: (state) => state.items,
-        
+        getPlacemarks:(state)=> state.placemarks,
+        getMapCoords:(state)=> state.map_coords
+
+                                 
         
     }
 }

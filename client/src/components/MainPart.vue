@@ -32,7 +32,7 @@
             </v-flex>
             <v-flex d-flex sm12 md12 grid class="form-top">
                 <v-card color="grey lighten-4" >
-                    <v-card-title primary class="title px-3 pb-2 pt-0  ">Контент
+                    <v-card-title primary class="title px-3 pb-0 pt-0 mb-0  ">Контент
                         <v-spacer></v-spacer>
                         <div> 
 <!--                            div for correct alignment-->
@@ -42,7 +42,19 @@
                             </v-radio-group>
                         </div>
                     </v-card-title>
-                    <v-card-text> 2 </v-card-text>
+                        <v-layout wrap fill-height px-3 pb-3 pt-0 ma-0>
+                            <v-flex >
+                                <yandex-map
+                                  :coords="mapCoords"
+                                  zoom="10"
+                                  style="width: 100%; height: 400px;"
+                                  :behaviors="['drag','scrollZoom']"
+                                  :controls="['zoomControl']"
+                                  :placemarks="placemarks"
+                                  map-type="map">
+                                </yandex-map>
+                            </v-flex>
+                        </v-layout>
                 </v-card> 
             </v-flex>
         </v-layout>
@@ -66,6 +78,7 @@
     
     export default{
         data:()=> ({
+
              nav_view_mode: [
                 { title: 'Классы' ,
                     tab: 'class'},
@@ -99,6 +112,16 @@
                     this.$store.dispatch('isRootGroup', this.selectedRootGroup)}, 1)
                 // Without setTimeout this.selectedRootGroup have a previous value
             }
+        },
+        computed:{
+            placemarks(){
+                return this.$store.getters.getPlacemarks
+            },  
+            mapCoords(){
+                return this.$store.getters.getMapCoords
+            }
+            
+            
         }
             
 
@@ -107,7 +130,7 @@
 
 <style scoped>
     .form-top{
-        min-height: 520px
+        height: 520px
     }
     .form-bottom{
         min-height: 200px
