@@ -4,6 +4,7 @@ export default{
         errored:false,
         root_group:'test1', 
         map_coords:[59.94, 30.32],
+        current_obj:{},
         items: [
             {
             id:'102',
@@ -11,6 +12,10 @@ export default{
             children:[{
                 id:'11',
                 name:'object11',
+                notes:[
+                    'First note 11',
+                    'Second note 11'
+                    ]
                 }]
             },
             {
@@ -23,15 +28,26 @@ export default{
                 children: [{
                     id:'211',
                     name: 'object211',
+                    notes:[
+                        'First note 211',
+                        'Second note 211'
+                        ]
                     }]
                 },
                 {
                 id:'22',
                 name: 'object22',
+                notes:[
+                    'First note 22'
+                    ]
                 },
                 {
                 id:'23',
                 name: 'object23',
+                notes:[
+                    'First note 23',
+                    'Second note 23'
+                    ]
             
                 }
             ]
@@ -39,11 +55,19 @@ export default{
             {
             id:'01',
             name: 'object01',
+            notes:[
+                'First note 01',
+                'Second note 01',
+                'Third note 01'
+                ]
         
             },
             {
             id:'02',
             name: 'object02',
+            notes:[
+                'First note 02'
+                ]
         
             }
             ],
@@ -98,6 +122,9 @@ export default{
         },
         set_map_coords(state,payload){
             state.map_coords=payload
+        },
+        set_current_obj(state,payload){
+            state.current_obj=payload
         }
         
     
@@ -128,6 +155,9 @@ export default{
         showOnMap(context, payload){
             var placemark=this.getters.getPlacemarks.find((placemark)=> placemark.id==payload)
             context.commit('set_map_coords',placemark.coords)
+        },
+        stateCurrentObj(context,payload){
+            context.commit('set_current_obj',payload)
         }
         
         
@@ -136,9 +166,11 @@ export default{
     getters:{
         getItems: (state) => state.items,
         getPlacemarks:(state)=> state.placemarks,
-        getMapCoords:(state)=> state.map_coords
-
-                                 
+        getMapCoords:(state)=> state.map_coords,
+        getNotes:(state)=>{
+              var item=state.current_obj
+              return item.notes  
+        }                      
         
     }
 }

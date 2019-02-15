@@ -14,7 +14,7 @@
                                 <v-btn slot="activator" icon>
                                     <v-icon right>fas fa-list</v-icon>
                                 </v-btn>
-                                <v-list>
+                                <v-list >
                                     <v-list-tile  v-for="(item, i) in nav_view_mode" :key="i" @click="ViewModeSwitch(item)" >
                                         <v-list-tile-title>{{ item.title }}</v-list-tile-title>
                                     </v-list-tile>
@@ -36,14 +36,17 @@
                         <v-spacer></v-spacer>
                         <div> 
 <!--                            div for correct alignment-->
-                             <v-radio-group  v-model="selectedViewContent" row >
+                             <v-radio-group  v-model="selectedViewContent" row>
                                 <v-radio label="Список" value="list" color="orange darken-3" ></v-radio>
                                 <v-radio label="Карта" value="map" color="orange darken-3"></v-radio>
                             </v-radio-group>
                         </div>
                     </v-card-title>
                         <v-layout wrap fill-height px-3 pb-3 pt-0 ma-0>
-                            <v-flex >
+                            <v-flex v-if="selectedViewContent=='list'" >
+                                <ListNotes></ListNotes>
+                            </v-flex>
+                            <v-flex v-if="selectedViewContent=='map'">
                                 <yandex-map
                                   :coords="mapCoords"
                                   zoom="10"
@@ -75,6 +78,7 @@
 
 <script>
     import Navigation from '@/components/Navigation'
+    import ListNotes from '@/components/ListNotes'
     
     export default{
         data:()=> ({
@@ -97,7 +101,8 @@
             selectedViewContent:'list'
         }),
         components:{           
-            Navigation
+            Navigation,
+            ListNotes
         },
         methods:{
             ViewModeSwitch: function(item){
@@ -114,12 +119,20 @@
             }
         },
         computed:{
+            items(){
+                return this.$store.getters.getItems
+            },
+            notes(){
+                return this.$store.getters.getNotes  
+            },
             placemarks(){
                 return this.$store.getters.getPlacemarks
             },  
             mapCoords(){
                 return this.$store.getters.getMapCoords
-            }
+            },
+            
+            
             
             
         }
@@ -138,4 +151,5 @@
     .CardTextPadding{
         padding: 10px   
     }
+    
 </style>
