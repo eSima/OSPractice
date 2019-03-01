@@ -32,6 +32,7 @@
             notes(){
                 return this.$store.getters.getNotes  
             },
+            
            
             
             

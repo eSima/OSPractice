@@ -109,9 +109,12 @@
         methods:{
             ViewModeSwitch: function(item){
                 if(item.tab=='class'){
-                    this.$store.dispatch('isClass')
+                    this.$store.dispatch('isClass');
+                    this.$store.dispatch('isGroups',{sort_type:'class'})
+                    
                 }else if(item.tab=='group'){
-                    this.$store.dispatch('isGroup')
+                    this.$store.dispatch('isGroup');
+                    this.$store.dispatch('isGroups',{sort_type:'group'})
                 }
             },
             RootGroupSelector: function(){
@@ -119,6 +122,13 @@
                     this.$store.dispatch('isRootGroup', this.selectedRootGroup)}, 1)
                 // Without setTimeout this.selectedRootGroup have a previous value
             }
+        },
+        mounted: function(){
+            this.$nextTick(function(){
+                this.$store.dispatch('isGroups',{sort_type:'group'})
+            })
+                
+           
         },
         computed:{
             items(){

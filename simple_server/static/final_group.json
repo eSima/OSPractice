@@ -1,0 +1,31 @@
+[
+    {
+        "id": 2000,
+        "PAR_GROUP_ID": 1000,
+        "name": "group2",
+        "remark": "group2_remark",
+        "type": 20,
+        "children":
+        [{
+            "id": 2,
+            "type": 20000,
+            "grid": 2000,
+            "remark": "coool!",
+            "name": "router-666"
+        }]},
+    {
+        "id": 1000,
+        "PAR_GROUP_ID": null,
+        "name": "group1",
+        "remark": "group1_comment",
+        "type": 10,
+        "children":
+        [{
+            "id": 1,
+            "type": 10000,
+            "grid": 1000,
+            "remark": "excelent",
+            "name": "router-2811"
+        }]
+    },
+    ]

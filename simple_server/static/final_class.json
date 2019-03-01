@@ -1,0 +1,56 @@
+[
+    {
+      "id": "class_id",
+      "name": "class_name",
+        "remark":"Smth here02",
+      "children": [
+        {
+          "id": "obj_id",
+          "name": "obj_name",
+	       "type": "obj_type",
+            "remark":"Smth here",
+          "notes": [
+            {
+              "id": "note_id",
+              "events": [
+                {
+                  "id": "event_id",
+                  "data": "event_data",
+                  "device": "6.0",
+                  "ip": "24",
+                  "priority": "4.0"
+                }
+              ]
+            }
+	       ]  
+	       }
+	   ]
+     },
+    {
+      "id": "class_id02",
+      "name": "class_name02",
+        "remark":"Smth here022",
+      "children": [
+        {
+          "id": "obj_id02",
+          "name": "obj_name02",
+	       "type": "obj_type",
+            "remark":"Smth here02",
+          "notes": [
+            {
+              "id": "note_id0002",
+              "events": [
+                {
+                  "id": "event_id00021",
+                  "data": "event_data",
+                  "device": "6.0",
+                  "ip": "24",
+                  "priority": "4.0"
+                }
+              ]
+            }
+	       ]  
+	       }
+	   ]
+     }
+]
