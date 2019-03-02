@@ -2,7 +2,7 @@
     {
       "id": "class_id",
       "name": "class_name",
-        "remark":"Smth here02",
+        "group_remark":"Smth here02",
       "children": [
         {
           "id": "obj_id",
@@ -29,7 +29,7 @@
     {
       "id": "class_id02",
       "name": "class_name02",
-        "remark":"Smth here022",
+        "group_type_remark":"Smth here022",
       "children": [
         {
           "id": "obj_id02",
